@@ -19,14 +19,14 @@
   ],
   "license": "BSD-2-Clause",
   "scripts": {
-    "cover": "c8 -x 'tests/**/*' --temp-directory build/tmp ava --timeout 2m && c8 report -r lcov -o build/coverage --temp-directory build/tmp",
     "test": "ava --timeout 2m",
+    "cover": "c8 -x 'tests/**/*' --temp-directory build/tmp ava --timeout 2m && c8 report -r lcov -o build/coverage --temp-directory build/tmp",
     "docs": "documentation readme ./src/aggregate-async-iterator.mjs --section=API",
     "lint": "documentation lint ./src/aggregate-async-iterator.mjs"
   },
   "devDependencies": {
-    "c8": "^7.1.2",
     "ava": "^3.8.2",
+    "c8": "^7.1.2",
     "documentation": "^13.0.0",
     "semantic-release": "^17.0.8"
   },
