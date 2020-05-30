@@ -6,8 +6,9 @@
   },
   "sideEffects": false,
   "type": "module",
+  "main": "./src/aggregate-async-iterator.mjs",
   "exports": {
-    ".": "{{main}}"
+    ".": "./src/aggregate-async-iterator.mjs"
   },
   "description": "Aggregates several async iterators into one",
   "contributors": [
@@ -18,10 +19,10 @@
   ],
   "license": "BSD-2-Clause",
   "scripts": {
-    "cover": "--overwrite-- c8 -x 'tests/**/*' --temp-directory build/tmp ava --timeout 2m && c8 report -r lcov -o build/coverage --temp-directory build/tmp",
+    "cover": "c8 -x 'tests/**/*' --temp-directory build/tmp ava --timeout 2m && c8 report -r lcov -o build/coverage --temp-directory build/tmp",
     "test": "ava --timeout 2m",
-    "docs": "--overwrite-- documentation readme {{main}} --section=API",
-    "lint": "--overwrite-- documentation lint {{main}}"
+    "docs": "documentation readme ./src/aggregate-async-iterator.mjs --section=API",
+    "lint": "documentation lint ./src/aggregate-async-iterator.mjs"
   },
   "devDependencies": {
     "c8": "^7.1.2",

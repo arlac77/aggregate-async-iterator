@@ -1,3 +1,4 @@
+import test from "ava";
 import aggregate from "aggregate-async-iterator";
 
 async function* sequence(name, time = 100, num = 10) {
@@ -6,8 +7,8 @@ async function* sequence(name, time = 100, num = 10) {
   }
 }
 
-async function doit() {
-    const results = [];
+test("simple", async t => {
+  const results = [];
 
   for await (const r of aggregate([
     sequence("A", 100, 5),
@@ -16,15 +17,18 @@ async function doit() {
     results.push(r);
   }
 
-  /*
-  [
-    'A0', 'B0', 'A1',
-    'B1', 'A2', 'B2',
-    'A3', 'B3', 'A4',
-    'B4', 'B5', 'B6'
-  ]
-  */
-  console.log(results);
-}
-
-doit();
+  t.deepEqual(results, [
+    "A0",
+    "B0",
+    "A1",
+    "B1",
+    "A2",
+    "B2",
+    "A3",
+    "B3",
+    "A4",
+    "B4",
+    "B5",
+    "B6"
+  ]);
+});
