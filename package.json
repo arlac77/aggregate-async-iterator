@@ -1,0 +1,7 @@
+{
+    "name": "aggregate-async-iterator",
+    "type": "module",
+    "exports": {
+      ".": "./src/aggregate-async-iterator.mjs"
+    }
+  }
