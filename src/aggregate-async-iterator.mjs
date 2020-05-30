@@ -3,23 +3,16 @@
  * @param {AsyncItarator<any>[]} sources
  */
 export async function* aggregate(sources) {
-  let running;
   do {
-    running = sources.map(s => s.next());
-
-  //  console.log(sources);
-  //  console.log(running);
-
+    const running = sources.map(s => s.next());
     const results = await Promise.all(running);
 
-   // console.log(results);
     for (const i in results) {
       const r = results[i];
 
       if (r.done) {
         sources.splice(i, 1);
-      }
-      else {
+      } else {
         yield r.value;
       }
     }
@@ -27,4 +20,3 @@ export async function* aggregate(sources) {
 }
 
 export default aggregate;
-
