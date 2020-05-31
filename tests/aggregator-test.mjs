@@ -32,3 +32,34 @@ test("simple", async t => {
     "B6"
   ]);
 });
+
+test("empty", async t => {
+  const results = [];
+
+  for await (const r of aggregate([
+    sequence("A", 100, 0),
+    sequence("B", 100, 0)
+  ])) {
+    results.push(r);
+  }
+
+  t.deepEqual(results, []);
+});
+
+test("single source", async t => {
+  const results = [];
+
+  for await (const r of aggregate([
+    sequence("A", 100, 5),
+  ])) {
+    results.push(r);
+  }
+
+  t.deepEqual(results, [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A4"
+  ]);
+});
