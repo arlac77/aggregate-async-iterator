@@ -12,7 +12,7 @@
 
 # aggregate-async-iterator
 
-finds and decodes best matching path in a set of routes
+Aggregates several async iterators into one
 
 # usage
 
