@@ -56,14 +56,32 @@ B6
 
 ### Table of Contents
 
--   [aggregate](#aggregate)
+-   [aggregateFifo](#aggregatefifo)
     -   [Parameters](#parameters)
+-   [aggregateRoundRobin](#aggregateroundrobin)
+    -   [Parameters](#parameters-1)
 
-## aggregate
+## aggregateFifo
+
+Aggregate items from sevaral iterators into one
+Items are collected first in first out from the sources
 
 ### Parameters
 
 -   `sources` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;AsyncItarator&lt;any>>** 
+
+Returns **AsyncItarator&lt;any>** items collected from all sources
+
+## aggregateRoundRobin
+
+Aggregate items from sevaral iterators into one
+Items are collected round robin from the sources
+
+### Parameters
+
+-   `sources` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;AsyncItarator&lt;any>>** 
+
+Returns **AsyncItarator&lt;any>** items collected from all sources
 
 # install
 
