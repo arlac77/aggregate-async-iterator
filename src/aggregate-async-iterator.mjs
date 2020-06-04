@@ -1,6 +1,7 @@
 /**
- *
+ * Aggrgate items from sevarl iterators into one 
  * @param {AsyncItarator<any>[]} sources
+ * @return {AsyncItarator<any>} items collected from all sources 
  */
 export async function* aggregate(sources) {
   do {
