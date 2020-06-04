@@ -5,9 +5,10 @@
  * @return {AsyncItarator<any>} items collected from all sources
  */
 export async function* aggregateFifo(sources) {
+  const queue = [];
 
   do {
-    const queue = [];
+    queue.length = 0;
 
     await new Promise(resolve =>
       sources.map((s, i) =>
@@ -16,21 +17,19 @@ export async function* aggregateFifo(sources) {
             sources.splice(i, 1);
             resolve();
           } else {
-            //    console.log(r.value,i);
-            queue.push(r);
-            //running.push(sources[i].next());
+          //  console.log(r.value, i);
+            queue.push(r.value);
             resolve();
           }
         })
       )
     );
 
-    console.log(queue);
+    //console.log(queue);
 
-    for (const r of queue)
-      if (!r.done) {
-        yield r.value;
-      }
+    for (const r of queue) {
+      yield r;
+    }
   } while (sources.length > 0);
 }
 
