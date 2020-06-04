@@ -2,7 +2,7 @@ import test from "ava";
 import { sequence } from "./helper/util.mjs";
 import { aggregateFifo } from "aggregate-async-iterator";
 
-test("fifo simple", async t => {
+test.only("fifo simple", async t => {
   const results = [];
 
   for await (const r of aggregateFifo([
@@ -11,6 +11,8 @@ test("fifo simple", async t => {
   ])) {
     results.push(r);
   }
+
+  console.log(results);
 
   t.deepEqual(results, [
     "B0",

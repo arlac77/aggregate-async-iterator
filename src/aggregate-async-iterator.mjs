@@ -1,37 +1,44 @@
-
 /**
  * Aggregate items from sevaral iterators into one
- * Items are collected first in first out from the sources 
+ * Items are collected first in first out from the sources
  * @param {AsyncItarator<any>[]} sources
- * @return {AsyncItarator<any>} items collected from all sources 
+ * @return {AsyncItarator<any>} items collected from all sources
  */
 export async function* aggregateFifo(sources) {
-  do {
-    const running = sources.map( async (s,i) => {
-      const r = await s.next();
-      if (r.done) {
-        sources.splice(i, 1);
-        running.splice(i, 1);
-      } else {
-        console.log("got", i, r);
-        running[i] = sources[i].next();
-      }
-      return r;
-    });
-    
-    const r = Promise.race(running);
 
-    if (!r.done) {
-      yield r.value;
-    }
+  do {
+    const queue = [];
+
+    await new Promise(resolve =>
+      sources.map((s, i) =>
+        s.next().then(r => {
+          if (r.done) {
+            sources.splice(i, 1);
+            resolve();
+          } else {
+            //    console.log(r.value,i);
+            queue.push(r);
+            //running.push(sources[i].next());
+            resolve();
+          }
+        })
+      )
+    );
+
+    console.log(queue);
+
+    for (const r of queue)
+      if (!r.done) {
+        yield r.value;
+      }
   } while (sources.length > 0);
 }
 
 /**
  * Aggregate items from sevaral iterators into one
- * Items are collected round robin from the sources 
+ * Items are collected round robin from the sources
  * @param {AsyncItarator<any>[]} sources
- * @return {AsyncItarator<any>} items collected from all sources 
+ * @return {AsyncItarator<any>} items collected from all sources
  */
 export async function* aggregateRoundRobin(sources) {
   do {
