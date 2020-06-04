@@ -1,16 +1,11 @@
 import test from "ava";
-import aggregate from "aggregate-async-iterator";
+import { sequence } from "./helper/util.mjs";
+import { aggregateRoundRobin } from "aggregate-async-iterator";
 
-async function* sequence(name, time = 100, num = 10) {
-  for (let i = 0; i < num; i += 1) {
-    yield new Promise(resolve => setTimeout(resolve(name + i), time));
-  }
-}
-
-test("simple", async t => {
+test("rr simple", async t => {
   const results = [];
 
-  for await (const r of aggregate([
+  for await (const r of aggregateRoundRobin([
     sequence("A", 100, 5),
     sequence("B", 50, 7)
   ])) {
@@ -33,10 +28,10 @@ test("simple", async t => {
   ]);
 });
 
-test("empty", async t => {
+test("rr empty", async t => {
   const results = [];
 
-  for await (const r of aggregate([
+  for await (const r of aggregateRoundRobin([
     sequence("A", 100, 0),
     sequence("B", 100, 0)
   ])) {
@@ -46,10 +41,10 @@ test("empty", async t => {
   t.deepEqual(results, []);
 });
 
-test("single source", async t => {
+test("rr single source", async t => {
   const results = [];
 
-  for await (const r of aggregate([
+  for await (const r of aggregateRoundRobin([
     sequence("A", 100, 5),
   ])) {
     results.push(r);
