@@ -28,6 +28,29 @@ test("rr simple", async t => {
   ]);
 });
 
+test("rr with rejects", async t => {
+  const results = [];
+
+  try {
+    for await (const r of aggregateRoundRobin([
+      sequence("A", 100, 5, 2),
+      sequence("B", 34, 7)
+    ])) {
+      results.push(r);
+    }
+
+    t.fail('none reachable');
+  }
+  catch(e) {
+  t.deepEqual(results, [
+    "A0",
+    "B0",
+    "A1",
+    "B1"
+  ]);
+  }
+});
+
 test("rr empty", async t => {
   const results = [];
 
