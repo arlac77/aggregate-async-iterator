@@ -1,6 +1,7 @@
 /**
- * Aggregate items from sevaral iterators into one
- * Items are collected first in first out from the sources
+ * Aggregate items from sevaral iterators into one.
+ * Items are collected first in first out from the sources.
+ * Whatever source comes first will be deliverd first.
  * @param {AsyncItarator<any>[]} sources
  * @return {AsyncItarator<any>} items collected from all sources
  */
@@ -35,8 +36,8 @@ export async function* aggregateFifo(sources) {
 }
 
 /**
- * Aggregate items from sevaral iterators into one
- * Items are collected round robin from the sources
+ * Aggregate items from sevaral iterators into one.
+ * Items are collected round robin from the sources.
  * @param {AsyncItarator<any>[]} sources
  * @return {AsyncItarator<any>} items collected from all sources
  */
