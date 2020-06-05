@@ -6,30 +6,31 @@
  */
 export async function* aggregateFifo(sources) {
   const queue = [];
-
+  let failure;
   do {
     queue.length = 0;
 
-    await new Promise(resolve =>
+    await new Promise((resolve,reject) =>
       sources.map((s, i) =>
         s.next().then(r => {
           if (r.done) {
             sources.splice(i, 1);
-            resolve();
           } else {
-          //  console.log(r.value, i);
             queue.push(r.value);
-            resolve();
           }
-        })
+          resolve();
+        }).catch( f=> failure = f)
       )
     );
-
-    //console.log(queue);
 
     for (const r of queue) {
       yield r;
     }
+
+    if(failure) {
+      throw failure;
+    }
+
   } while (sources.length > 0);
 }
 

@@ -16,8 +16,6 @@ test("fifo simple", async t => {
     results.push(r);
   }
 
-  // console.log(results);
-
   t.deepEqual(results, [
     "B0",
     "B1",
@@ -32,6 +30,34 @@ test("fifo simple", async t => {
     "A3",
     "A4"
   ]);
+});
+
+test("fifo with rejects", async t => {
+  const results = [];
+
+  try {
+    for await (const r of aggregateFifo([
+      sequence("A", 100, 5, 2),
+      sequence("B", 34, 7)
+    ])) {
+      results.push(r);
+    }
+
+    t.fail('none reachable');
+  }
+  catch(e) {
+  t.deepEqual(results, [
+    "B0",
+    "B1",
+    "A0",
+    "B2",
+    "B3",
+    "B4",
+    "A1",
+    "B5",
+    "B6"
+  ]);
+  }
 });
 
 test("fifo empty", async t => {
