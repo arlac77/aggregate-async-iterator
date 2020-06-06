@@ -11,7 +11,10 @@
     ".": "./src/aggregate-async-iterator.mjs"
   },
   "description": "Aggregates several async iterators into one",
-  "keywords" : ["asynciterator","aggregate"],
+  "keywords": [
+    "asynciterator",
+    "aggregate"
+  ],
   "contributors": [
     {
       "name": "Markus Felten",
