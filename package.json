@@ -12,8 +12,8 @@
   },
   "description": "Aggregates several async iterators into one",
   "keywords": [
-    "asynciterator",
-    "aggregate"
+    "aggregate",
+    "asynciterator"
   ],
   "contributors": [
     {
