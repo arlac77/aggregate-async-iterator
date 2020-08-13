@@ -34,6 +34,9 @@
     "documentation": "^13.0.2",
     "semantic-release": "^17.1.1"
   },
+  "engines": {
+    "node": ">=12.18.3"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/arlac77/aggregate-async-iterator.git"
@@ -45,7 +48,10 @@
   "template": {
     "inheritFrom": [
       "arlac77/template-arlac77-github",
-      "arlac77/template-esm-only"
+      "arlac77/template-documentation",
+      "arlac77/template-esm-only",
+      "arlac77/template-coverage",
+      "arlac77/template-node-component"
     ]
   }
 }
