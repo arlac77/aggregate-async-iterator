@@ -65,7 +65,7 @@ B6
 
 Aggregate items from sevaral iterators into one.
 Items are collected first in first out from the sources.
-Whatever source comes first will be deliverd first.
+Whatever source comes first will be delivered first.
 
 ### Parameters
 
