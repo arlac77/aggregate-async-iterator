@@ -8,7 +8,8 @@
 export async function* aggregateFifo(sources) {
   const queue = [];
   let failure;
-  do {
+
+  while (sources.length > 0) {
     queue.length = 0;
 
     await new Promise((resolve, reject) =>
@@ -34,7 +35,7 @@ export async function* aggregateFifo(sources) {
     if (failure) {
       throw failure;
     }
-  } while (sources.length > 0);
+  }
 }
 
 /**

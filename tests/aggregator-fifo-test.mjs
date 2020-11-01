@@ -73,6 +73,16 @@ test("fifo empty", async t => {
   t.deepEqual(results, []);
 });
 
+test("fifo no input", async t => {
+  const results = [];
+
+  for await (const r of aggregateFifo([])) {
+    results.push(r);
+  }
+
+  t.deepEqual(results, []);
+});
+
 test("fifo single source", async t => {
   const results = [];
 

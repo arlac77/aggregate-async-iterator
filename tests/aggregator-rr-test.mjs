@@ -64,6 +64,16 @@ test("rr empty", async t => {
   t.deepEqual(results, []);
 });
 
+test("rr no input", async t => {
+  const results = [];
+
+  for await (const r of aggregateRoundRobin([])) {
+    results.push(r);
+  }
+
+  t.deepEqual(results, []);
+});
+
 test("rr single source", async t => {
   const results = [];
 
