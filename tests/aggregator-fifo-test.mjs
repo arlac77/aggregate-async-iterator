@@ -1,94 +1,53 @@
 import test from "ava";
-import { sequence } from "./helper/util.mjs";
+import { sequence, aft } from "./helper/util.mjs";
 import aggregate, { aggregateFifo } from "aggregate-async-iterator";
 
 test("default is aggregateFifo", t => {
   t.is(aggregateFifo, aggregate);
 });
 
-test("fifo simple", async t => {
-  const results = [];
 
-  for await (const r of aggregateFifo([
-    sequence("A", 100, 5),
-    sequence("B", 34, 7)
-  ])) {
-    results.push(r);
-  }
+test(
+  "simple",
+  aft,
+  aggregateFifo,
+  [sequence("A", 100, 5), sequence("B", 34, 7)],
+  ["B0", "B1", "A0", "B2", "B3", "B4", "A1", "B5", "B6", "A2", "A3", "A4"]
+);
 
-  t.deepEqual(results, [
-    "B0",
-    "B1",
-    "A0",
-    "B2",
-    "B3",
-    "B4",
-    "A1",
-    "B5",
-    "B6",
-    "A2",
-    "A3",
-    "A4"
-  ]);
-});
+test(
+  "rejects",
+  aft,
+  aggregateFifo,
+  [sequence("A", 100, 5, 2), sequence("B", 34, 7)],
+  ["B0", "B1", "A0", "B2", "B3", "B4", "A1", "B5", "B6"],
+  "A2"
+);
 
-test("fifo with rejects", async t => {
-  const results = [];
+test("only rejects", aft, aggregateFifo, [sequence("A", 100, 5, 0)], [], "A0");
+test(
+  "several only rejects",
+  aft,
+  aggregateFifo,
+  [sequence("A", 100, 5, 0), sequence("B", 30, 5, 0)],
+  [],
+  "B0"
+);
 
-  try {
-    for await (const r of aggregateFifo([
-      sequence("A", 100, 5, 2),
-      sequence("B", 34, 7)
-    ])) {
-      results.push(r);
-    }
+test(
+  "empty",
+  aft,
+  aggregateFifo,
+  [sequence("A", 100, 0), sequence("B", 100, 0)],
+  []
+);
 
-    t.fail('none reachable');
-  }
-  catch(e) {
-  t.deepEqual(results, [
-    "B0",
-    "B1",
-    "A0",
-    "B2",
-    "B3",
-    "B4",
-    "A1",
-    "B5",
-    "B6"
-  ]);
-  }
-});
+test("no input", aft, aggregateFifo, [], []);
 
-test("fifo empty", async t => {
-  const results = [];
-
-  for await (const r of aggregateFifo([
-    sequence("A", 100, 0),
-    sequence("B", 100, 0)
-  ])) {
-    results.push(r);
-  }
-
-  t.deepEqual(results, []);
-});
-
-test("fifo no input", async t => {
-  const results = [];
-
-  for await (const r of aggregateFifo([])) {
-    results.push(r);
-  }
-
-  t.deepEqual(results, []);
-});
-
-test("fifo single source", async t => {
-  const results = [];
-
-  for await (const r of aggregateFifo([sequence("A", 100, 5)])) {
-    results.push(r);
-  }
-
-  t.deepEqual(results, ["A0", "A1", "A2", "A3", "A4"]);
-});
+test(
+  "single source",
+  aft,
+  aggregateFifo,
+  [sequence("A", 100, 5)],
+  ["A0", "A1", "A2", "A3", "A4"]
+);

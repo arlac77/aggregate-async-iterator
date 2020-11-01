@@ -7,7 +7,6 @@
  */
 export async function* aggregateFifo(sources) {
   const queue = [];
-  let failure;
 
   while (sources.length > 0) {
     queue.length = 0;
@@ -24,16 +23,12 @@ export async function* aggregateFifo(sources) {
             }
             resolve();
           })
-          .catch(f => (failure = f))
+          .catch(f => reject(f))
       )
     );
 
     for (const r of queue) {
       yield r;
-    }
-
-    if (failure) {
-      throw failure;
     }
   }
 }
