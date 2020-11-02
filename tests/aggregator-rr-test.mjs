@@ -1,5 +1,5 @@
 import test from "ava";
-import { sequence, aft } from "./helper/util.mjs";
+import { aft } from "./helper/util.mjs";
 import { aggregateRoundRobin } from "aggregate-async-iterator";
 
 test(
