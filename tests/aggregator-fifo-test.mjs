@@ -1,5 +1,5 @@
 import test from "ava";
-import { sequence, aft } from "./helper/util.mjs";
+import { aft } from "./helper/util.mjs";
 import aggregate, { aggregateFifo } from "aggregate-async-iterator";
 
 test("default is aggregateFifo", t => {
