@@ -14,12 +14,16 @@ export async function* sequence(name, time = 100, num = 10, errIndex = -1) {
   }
 }
 
+function generateSequences(x) {
+  return Array.isArray(x) ? sequence(...x) : x;
+}
 
 export async function aft(t, aggregator, input, expected, failed) {
   const results = [];
 
+  input;
   try {
-    for await (const r of aggregator(input)) {
+    for await (const r of aggregator(input.map(x => generateSequences(x)))) {
       results.push(r);
     }
   } catch (e) {
@@ -29,7 +33,8 @@ export async function aft(t, aggregator, input, expected, failed) {
   t.deepEqual(results, expected);
 }
 
+
 aft.title = (providedTitle = "", aggregator, input, expected, failed = "") =>
   `aggregate ${
     aggregator === aggregateFifo ? "fifo" : "round robin"
-  } ${providedTitle} ${expected} ${failed}`.trim();
+  } ${providedTitle} ${input.map(s=>s.join(':')).join(',')} -> ${expected.length === 0 ? 'empty' : expected} ${failed ? 'failed at ' + failed :''}`.trim();
