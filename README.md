@@ -13,7 +13,7 @@ Aggregates several async iterators into one
 # usage
 
 ```js
-import { aggregateRoundRobin } from "aggregate-async-iterator";
+import { aggregateRoundRobin, aggregateFifo } from "aggregate-async-iterator";
 
 async function* sequence(name, time = 100, num = 10) {
   for (let i = 0; i < num; i += 1) {
@@ -21,9 +21,20 @@ async function* sequence(name, time = 100, num = 10) {
   }
 }
 
+console.log("RR:");
+
 for await (const r of aggregateRoundRobin([
-    sequence("A", 100, 5),
-    sequence("B", 50, 7)
+    sequence("A", 100, 3),
+    sequence("B", 35, 5)
+  ])) {
+  console.log(r);
+}
+
+console.log("FIFO:");
+
+for await (const r of aggregateFifo([
+    sequence("A", 100, 3),
+    sequence("B", 35, 5)
   ])) {
   console.log(r);
 }
@@ -32,18 +43,24 @@ for await (const r of aggregateRoundRobin([
 Prints interleved sequences
 
 ```txt
+RR:
 A0
 B0
 A1
 B1
 A2
 B2
-A3
 B3
-A4
 B4
-B5
-B6
+FIFO:
+A0
+B0
+A1
+B1
+A2
+B2
+B3
+B4
 ```
 
 # API
