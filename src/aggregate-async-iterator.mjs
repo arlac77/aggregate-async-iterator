@@ -12,12 +12,15 @@ export async function* aggregateFifo(sources) {
     queue.length = 0;
 
     await new Promise((resolve, reject) =>
-      sources.map((s, i) =>
+      sources.map(s =>
         s
           .next()
           .then(r => {
             if (r.done) {
-              sources.splice(i, 1);
+              const w = sources.indexOf(s);
+              if (w >= 0) {
+                sources.splice(w, 1);
+              }
             } else {
               queue.push(r.value);
             }

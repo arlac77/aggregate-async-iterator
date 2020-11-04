@@ -18,6 +18,18 @@ test(
 );
 
 test(
+  "first faster",
+  aft,
+  aggregateFifo,
+  [
+    ["A", 10, 2],
+    ["B", 25, 2],
+    ["C", 30, 4]
+  ],
+  ["A0", "A1", "B0", "C0", "B1", "C1", "C2", "C3"]
+);
+
+test(
   "rejects",
   aft,
   aggregateFifo,
