@@ -76,7 +76,7 @@ B4
 
 ## aggregateFifo
 
-Aggregate items from sevaral iterators into one.
+Aggregate items from sevaral async iterators into one.
 Items are collected first in first out from the sources.
 Whatever source comes first will be delivered first.
 
@@ -88,7 +88,7 @@ Returns **AsyncItarator&lt;any>** items collected from all sources
 
 ## aggregateRoundRobin
 
-Aggregate items from sevaral iterators into one.
+Aggregate items from sevaral async iterators into one.
 Items are collected round robin from the sources.
 
 ### Parameters
