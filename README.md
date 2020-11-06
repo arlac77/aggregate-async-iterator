@@ -90,6 +90,8 @@ Returns **AsyncItarator&lt;any>** items collected from all sources
 
 Aggregate items from sevaral async iterators into one.
 Items are collected round robin from the sources.
+The 2nd. round of items will only be delivered after all sources
+have delivered their 1st. round.
 
 ### Parameters
 
