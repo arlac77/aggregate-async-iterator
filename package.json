@@ -10,12 +10,13 @@
   "exports": {
     ".": "./src/aggregate-async-iterator.mjs"
   },
-  "description": "Aggregates several async iterators into one",
+  "description": "Aggregates several async iterators into one (zip)",
   "keywords": [
     "aggregate",
     "asynciterator",
     "iterators",
-    "sequence"
+    "sequence",
+    "zip"
   ],
   "contributors": [
     {

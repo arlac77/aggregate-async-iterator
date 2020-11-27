@@ -7,7 +7,7 @@
 
 # aggregate-async-iterator
 
-Aggregates several async iterators into one
+Aggregates several async iterators into one (zip)
 
 # usage
 
