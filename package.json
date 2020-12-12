@@ -5,8 +5,6 @@
     "access": "public"
   },
   "sideEffects": false,
-  "type": "module",
-  "main": "./src/aggregate-async-iterator.mjs",
   "exports": {
     ".": "./src/aggregate-async-iterator.mjs"
   },
