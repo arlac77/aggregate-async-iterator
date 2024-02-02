@@ -43,7 +43,7 @@ for await (const r of aggregateFifo([
 }
 ```
 
-Prints interleved sequences
+Prints interleaved sequences
 
 ```txt
 RR:
@@ -72,10 +72,16 @@ B4
 
 ### Table of Contents
 
-*   [aggregateFifo](#aggregatefifo)
-    *   [Parameters](#parameters)
-*   [aggregateRoundRobin](#aggregateroundrobin)
-    *   [Parameters](#parameters-1)
+- [aggregate-async-iterator](#aggregate-async-iterator)
+- [usage](#usage)
+- [API](#api)
+    - [Table of Contents](#table-of-contents)
+  - [aggregateFifo](#aggregatefifo)
+    - [Parameters](#parameters)
+  - [aggregateRoundRobin](#aggregateroundrobin)
+    - [Parameters](#parameters-1)
+- [install](#install)
+- [license](#license)
 
 ## aggregateFifo
 
