@@ -2,7 +2,8 @@
   "name": "aggregate-async-iterator",
   "version": "0.0.0-semantic-release",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "exports": {
     ".": "./src/aggregate-async-iterator.mjs"
