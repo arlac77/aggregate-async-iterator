@@ -72,16 +72,10 @@ B4
 
 ### Table of Contents
 
-- [aggregate-async-iterator](#aggregate-async-iterator)
-- [usage](#usage)
-- [API](#api)
-    - [Table of Contents](#table-of-contents)
-  - [aggregateFifo](#aggregatefifo)
-    - [Parameters](#parameters)
-  - [aggregateRoundRobin](#aggregateroundrobin)
-    - [Parameters](#parameters-1)
-- [install](#install)
-- [license](#license)
+*   [aggregateFifo](#aggregatefifo)
+    *   [Parameters](#parameters)
+*   [aggregateRoundRobin](#aggregateroundrobin)
+    *   [Parameters](#parameters-1)
 
 ## aggregateFifo
 
