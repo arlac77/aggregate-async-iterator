@@ -5,14 +5,13 @@
     "access": "public",
     "provenance": true
   },
+  "types": "./dist/aggregate-async-iterator.d.mts",
   "exports": {
     ".": {
       "types": "./dist/aggregate-async-iterator.d.mts",
       "default": "./src/aggregate-async-iterator.mjs"
     }
   },
-  "types": "./dist/aggregate-async-iterator.d.mts",
-
   "description": "Aggregates several async iterators into one (zip)",
   "keywords": [
     "aggregate",
