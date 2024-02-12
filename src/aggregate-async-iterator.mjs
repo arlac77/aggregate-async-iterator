@@ -2,8 +2,8 @@
  * Aggregate items from sevaral async iterators into one.
  * Items are collected first in first out from the sources.
  * Whatever source comes first will be delivered first.
- * @param {AsyncIterable<any>[]} sources
- * @return {AsyncIterable<any>} items collected from all sources
+ * @param {AsyncIterator<any>[]} sources
+ * @return {AsyncIterator<any>} items collected from all sources
  */
 export async function* aggregateFifo(sources) {
   const queue = [];
@@ -24,6 +24,7 @@ export async function* aggregateFifo(sources) {
             } else {
               queue.push(r.value);
             }
+            // @ts-ignore
             resolve();
           })
           .catch(f => reject(f))
@@ -41,8 +42,8 @@ export async function* aggregateFifo(sources) {
  * Items are collected round robin from the sources.
  * The 2nd. round of items will only be delivered after all sources
  * have delivered their 1st. round (or reached their end).
- * @param {AsyncIterable<any>[]} sources
- * @return {AsyncIterable<any>} items collected from all sources
+ * @param {AsyncIterator<any>[]} sources
+ * @return {AsyncIterator<any>} items collected from all sources
  */
 export async function* aggregateRoundRobin(sources) {
   do {
