@@ -8,8 +8,8 @@
   "types": "./types/aggregate-async-iterator.d.mts",
   "exports": {
     ".": {
-      "types": "./types/aggregate-async-iterator.d.mts",
-      "default": "./src/aggregate-async-iterator.mjs"
+      "default": "./src/aggregate-async-iterator.mjs",
+      "types": "./types/aggregate-async-iterator.d.mts"
     }
   },
   "description": "Aggregates several async iterators into one (zip)",
