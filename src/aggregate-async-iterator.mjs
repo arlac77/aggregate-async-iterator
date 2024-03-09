@@ -53,6 +53,7 @@ export async function* aggregateRoundRobin(sources) {
       const r = results[i];
 
       if (r.done) {
+        // @ts-ignore
         sources.splice(i, 1);
       } else {
         yield r.value;
