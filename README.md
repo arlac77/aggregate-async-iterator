@@ -88,7 +88,7 @@ Whatever source comes first will be delivered first.
 
 *   `sources` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)\<AsyncIterator\<any>>**&#x20;
 
-Returns **AsyncIterator\<any>** items collected from all sources
+Returns **AsyncIterable\<any>** items collected from all sources
 
 ## aggregateRoundRobin
 
@@ -101,7 +101,7 @@ have delivered their 1st. round (or reached their end).
 
 *   `sources` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)\<AsyncIterator\<any>>**&#x20;
 
-Returns **AsyncIterator\<any>** items collected from all sources
+Returns **AsyncIterable\<any>** items collected from all sources
 
 # install
 
