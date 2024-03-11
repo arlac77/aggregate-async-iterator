@@ -3,7 +3,7 @@
  * Items are collected first in first out from the sources.
  * Whatever source comes first will be delivered first.
  * @param {AsyncIterator<any>[]} sources
- * @return {AsyncIterator<any>} items collected from all sources
+ * @return {AsyncIterable<any>} items collected from all sources
  */
 export async function* aggregateFifo(sources) {
   const queue = [];
@@ -43,7 +43,7 @@ export async function* aggregateFifo(sources) {
  * The 2nd. round of items will only be delivered after all sources
  * have delivered their 1st. round (or reached their end).
  * @param {AsyncIterator<any>[]} sources
- * @return {AsyncIterator<any>} items collected from all sources
+ * @return {AsyncIterable<any>} items collected from all sources
  */
 export async function* aggregateRoundRobin(sources) {
   do {
