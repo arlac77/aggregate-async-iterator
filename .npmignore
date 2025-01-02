@@ -5,3 +5,4 @@ doc
 *.log
 *.tmp
 .github
+tsconfig.json
